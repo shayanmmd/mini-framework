@@ -54,4 +54,15 @@ class Router
         $controllerInstance = new $controllerClass();
         $controllerInstance->{$methodOfController}();
     }
+
+    public function enableMiddleWares()
+    {
+        $middleWares = $this->currentRoute['middleWares'];
+        if (is_null($middleWares))
+            return;
+        foreach ($middleWares as $middleWareClass) {
+            $middleWareClassObj = new $middleWareClass;
+            $middleWareClassObj->handle();
+        }
+    }
 }
