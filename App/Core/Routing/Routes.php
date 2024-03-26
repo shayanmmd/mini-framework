@@ -10,11 +10,11 @@ class Routes
     private static $methods;
     private static $callBack;
 
-    public static function add($uri, $methods, $callBack)
+    public static function add($uri, $methods, $callBack, $middleWares = [])
     {
         if (is_null($uri) || empty($uri))
             throw new Exception();
-        
+
         if (!is_array($methods))
             $methods = array($methods);
 
@@ -23,7 +23,8 @@ class Routes
         self::$routes[] = [
             "uri" => $uri,
             "methods" => $methods,
-            "callBack" => $callBack
+            "callBack" => $callBack,
+            "middleWares" => $middleWares
         ];
     }
 
@@ -32,23 +33,23 @@ class Routes
         return self::$routes;
     }
 
-    public static function get($uri, $callBack)
+    public static function get($uri, $callBack, $middleWares = [])
     {
-        self::add($uri, 'get', $callBack);
+        self::add($uri, 'get', $callBack, $middleWares);
     }
 
-    public static function post($uri, $callBack)
+    public static function post($uri, $callBack, $middleWares = [])
     {
-        self::add($uri, 'post', $callBack);
+        self::add($uri, 'post', $callBack, $middleWares);
     }
 
-    public static function put($uri, $callBack)
+    public static function put($uri, $callBack, $middleWares = [])
     {
-        self::add($uri, 'put', $callBack);
+        self::add($uri, 'put', $callBack, $middleWares);
     }
 
-    public static function delete($uri, $callBack)
+    public static function delete($uri, $callBack, $middleWares = [])
     {
-        self::add($uri, 'delete', $callBack);
+        self::add($uri, 'delete', $callBack, $middleWares);
     }
 }
