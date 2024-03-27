@@ -9,6 +9,6 @@ class checkIpMiddleWare implements MiddleWaresInterface
     public function handle()
     {
         global $REQUEST;
-        echo "Your ip address is =". $REQUEST->GetIp() . "<br>";
+        echo "Your ip address is =" . $REQUEST->GetIp() . "<br>";
     }
 }

@@ -5,6 +5,7 @@ namespace App\Core;
 class Request
 {
     private $queryParams;
+    private $routeParams;
     private $ip;
     private $path;
     private $httpMethod;
@@ -68,5 +69,20 @@ class Request
 
         header($url);
         die();
+    }
+
+    public function addRouteParam($key, $value)
+    {
+        $this->routeParams[$key] = $value;
+    }
+
+    public function getRouteParam($key)
+    {
+        return $this->routeParams[$key];
+    }
+
+    public function getRouteParams()
+    {
+        return $this->routeParams;
     }
 }
